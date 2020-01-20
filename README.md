@@ -13,7 +13,7 @@ $ git clone https://github.com/bereid/now.git
 
 1. Follow the instructions [on React Native documentation page](https://facebook.github.io/react-native/docs/getting-started) to set up your Android development environment!
 2. Plug in your Android device to your computer and make sure that you enabled the development mode.
-3. Install the dependencies and devDependencies and start the server.
+3. Install the dependencies and devDependencies.
 4. Follow the instructions [on React Native documentation page](https://facebook.github.io/react-native/docs/running-on-device) to run the app on your device!
 
 ```sh
