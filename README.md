@@ -2,10 +2,10 @@
 now is a React Native application which lists the available Bluetooth Low Energy devices nearby.
 ### Installation
 
-install node globally
-install JDK globally
-install Android Studio globally
-install React Native CLI globally
+* install node globally
+* install JDK globally
+* install Android Studio globally
+* install React Native CLI globally
 
 ```sh
 $ git clone https://github.com/bereid/now.git
