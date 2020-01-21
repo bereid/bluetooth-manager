@@ -1,47 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, View, Text, Button, Alert, PermissionsAndroid } from 'react-native';
-import BleManager from 'react-native-ble-manager';
+import BleManager, { scan } from 'react-native-ble-manager';
+import * as BLE_modules from '../../BLE_modules';
 
 const ListOfDevices = (props) => {
   const { navigation } = props;
   const navigateToDeviceDetails = () => {
     navigation.navigate('Details');
-  }
-  useEffect(() => {
-    BleManager.start({ showAlert: false }).then(() => {
-      console.log('Module initialized');
-    });
-  }, []);
-  const scanDevices = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
-        {
-          title: 'Access',
-          message: 'Access to your location',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        }
-      )
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        BleManager.scan([], 15, true).then(() => {
-          console.log('Scan started');
-        }).catch(e => console.log(e));
-      }
-    }
-    catch {
-      Alert.alert('To scanning, you have to give access to your location!')
-    }
   };
+  const [devices, setDevices] = useState([]);
+  const [scanning, setScanning] = useState(false);
+  useEffect(() => {
+    BLE_modules.startModule();
+  }, []);
 
-  const logDevices = () => {
-    BleManager.getDiscoveredPeripherals()
-      .then(devices => {
-        console.log('Discovered devices:', devices);
-      })
-      .catch(e => console.log(e))
-  }
+  console.log('scanning: ' + scanning);
+  console.log('scanned devices: ' + devices);
+
+  // if (devices.length === 0 && !scanning) {
+  return (
+    <>
+      <SafeAreaView style={{ padding: 40 }}>
+        <ScrollView>
+          <Button
+            title="Scan devices"
+            onPress={() => { if (!scanning) { BLE_modules.scanDevices(setDevices, devices, setScanning) } }}
+          />
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
+  // }
 
   return (
     <>
@@ -51,14 +40,6 @@ const ListOfDevices = (props) => {
           <Button
             title="Go to details"
             onPress={() => navigateToDeviceDetails()}
-          />
-          <Button
-            title="Scan devices"
-            onPress={() => scanDevices()}
-          />
-          <Button
-            title="Log devices"
-            onPress={() => logDevices()}
           />
         </ScrollView>
       </SafeAreaView>
