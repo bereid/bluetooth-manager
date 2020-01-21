@@ -12,39 +12,42 @@ const ListOfDevices = (props) => {
   const [scanning, setScanning] = useState(false);
   useEffect(() => {
     BLE_modules.startModule();
+    setDevices([]);
+    setScanning(false);
   }, []);
 
   console.log('scanning: ' + scanning);
-  console.log('scanned devices: ' + devices);
+  console.log('length of devices: ' + devices.length);
+  console.log(devices)
 
-  // if (devices.length === 0 && !scanning) {
   return (
     <>
       <SafeAreaView style={{ padding: 40 }}>
         <ScrollView>
-          <Button
+          { scanning && <Text>Scanning...</Text> }
+          { devices.length > 0 && devices.map((device) => <Text>{device.id}</Text>) }
+          { !scanning && <Button
             title="Scan devices"
-            onPress={() => { if (!scanning) { BLE_modules.scanDevices(setDevices, devices, setScanning) } }}
-          />
+            onPress={() => { BLE_modules.scanDevices(setDevices, devices, setScanning)}}
+          /> }
         </ScrollView>
       </SafeAreaView>
     </>
   );
-  // }
 
-  return (
-    <>
-      <SafeAreaView>
-        <ScrollView>
-          <Text>List of devices</Text>
-          <Button
-            title="Go to details"
-            onPress={() => navigateToDeviceDetails()}
-          />
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+  // return (
+  //   <>
+  //     <SafeAreaView>
+  //       <ScrollView>
+  //         <Text>List of devices</Text>
+  //         <Button
+  //           title="Go to details"
+  //           onPress={() => navigateToDeviceDetails()}
+  //         />
+  //       </ScrollView>
+  //     </SafeAreaView>
+  //   </>
+  // );
 };
 
 

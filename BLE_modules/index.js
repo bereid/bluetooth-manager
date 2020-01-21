@@ -27,10 +27,7 @@ export async function scanDevices(setDevices, devices, setScanning) {
           let timer = setInterval(() => {
             BleManager.getDiscoveredPeripherals()
               .then(scannedDevices => {
-                setDevices([
-                  ...devices,
-                  scannedDevices
-                ])
+                setDevices(scannedDevices)
               })
               .catch(e => console.log(e))
           }, 200);
