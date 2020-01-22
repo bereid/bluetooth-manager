@@ -40,11 +40,3 @@ export async function scanDevices(setDevices, devices, setScanning) {
     Alert.alert('To scanning, you have to give access to your location!')
   }
 };
-
-export function setAvailableDevices() {
-  BleManager.getDiscoveredPeripherals()
-    .then(devices => {
-      console.log(devices)
-    })
-    .catch(e => console.log(e))
-}
