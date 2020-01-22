@@ -6,7 +6,8 @@ const ListItem = (props) => {
   const { deviceName, deviceID, deviceRSSI, navigate } = props;
   return (
     <>
-      <View style={styles.listItemContainer}>
+      <View
+        style={styles.listItemContainer}>
         <View style={styles.listItemTextContainer}>
           <Text>Name: {deviceName}</Text>
           <Text>ID: {deviceID}</Text>
@@ -14,8 +15,8 @@ const ListItem = (props) => {
         </View>
         <View style={styles.listItemButtonContainer}>
           <Button
-            title="Connect"
             onPress={() => navigate('Details')}
+            title="Connect"
           />
         </View>
       </View>

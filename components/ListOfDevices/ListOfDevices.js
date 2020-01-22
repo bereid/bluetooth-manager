@@ -12,16 +12,14 @@ const ListOfDevices = ({ navigation }) => {
 
   useEffect(() => {
     BLE_modules.startModule();
-    setDevices([]);
-    setScanning(false);
+    BLE_modules.scanDevices(setDevices, devices, setScanning)
   }, []);
 
   const filteredDevices = () => {
-    return devices.filter(d =>
-      ((d.name && d.name.toLowerCase().includes(search.toLowerCase()))
-      ||
-      (d.id && d.id.toLowerCase().includes(search.toLowerCase())))
-    )
+    return devices.filter(d => (
+      d.name && d.name.toLowerCase().includes(search.toLowerCase()))
+      || (d.id && d.id.toLowerCase().includes(search.toLowerCase()))
+    );
   }
 
   console.log('scanning: ' + scanning);
@@ -35,13 +33,13 @@ const ListOfDevices = ({ navigation }) => {
 
   return (
     <>
-      <SafeAreaView style={{ padding: 40 }}>
-        <TextInput
-          placeholder={'Tap to search by name or id...'}
-          value={search}
-          onChange={(e) => setSearch(e.nativeEvent.text)}
-        />
+      <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
+          <TextInput
+            placeholder={'Tap to search by name or id...'}
+            value={search}
+            onChange={(e) => setSearch(e.nativeEvent.text)}
+          />
           {devices.length > 0 &&
             <View style={styles.listContainer}>
               {filteredDevices().map((device) => {

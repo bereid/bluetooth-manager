@@ -1,25 +1,27 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  safeAreaView: {
+    padding: 20,
+  },
   listItemContainer: {
     display: 'flex',
     flexDirection: 'row',
     borderBottomColor: 'grey',
     borderBottomWidth: 1,
+    paddingTop: 5,
+    paddingBottom: 5,
   },
   listItemTextContainer: {
     display: 'flex',
     flexDirection: 'column',
-    padding: 10,
     flex: 0.7,
   },
   listItemButtonContainer: {
     flex: 0.3,
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    paddingRight: 0,
+    alignItems: 'flex-end',
   },
   listContainer: {
     marginBottom: 20,
