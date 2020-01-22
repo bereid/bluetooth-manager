@@ -33,6 +33,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "center",
     alignItems: 'center',
+  },
+  scanningText: {
+    fontSize: 18,
+    marginLeft: 10,
+    color: 'rgb(86, 213, 250)'
+  },
+  detailsBoxContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    borderWidth: 1,
+    borderColor: 'grey'
+  },
+  detailsBoxRowOdd: {
+    backgroundColor: 'white',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  detailsBoxRowEven: {
+    backgroundColor: 'transparent',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  detailsCell: {
+    flex: 0.5,
+    padding: 10
   }
 });
 

@@ -22,20 +22,15 @@ const ListOfDevices = ({ navigation }) => {
     );
   }
 
-  console.log('scanning: ' + scanning);
-  console.log('length of devices: ' + devices.length);
-  if (devices.length > 0) {
-    for (let i = 0; i < devices.length; i++) {
-      console.log(devices[i])
-    }
-  }
-  console.log(search)
+  console.log(devices)
 
   return (
     <>
       <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
           <TextInput
+            style={{ height: 40 }}
+            autoCorrect={false}
             placeholder={'Tap to search by name or MAC...'}
             value={search}
             onChange={(e) => setSearch(e.nativeEvent.text)}
@@ -45,9 +40,8 @@ const ListOfDevices = ({ navigation }) => {
               {filteredDevices().map((device) => {
                 let deviceProps = {
                   deviceName: device.name ? device.name : 'Unknown device',
-                  deviceRSSI: device.rssi,
-                  deviceID: device.id,
-                  navigate: navigation.navigate
+                  navigation: navigation,
+                  ...device
                 }
                 return (
                   <ListItem key={device.id} {...deviceProps} />
@@ -57,11 +51,12 @@ const ListOfDevices = ({ navigation }) => {
           }
           {scanning ?
             <View style={styles.progressContainer}>
-              <ActivityIndicator />
-              <Text>Scanning...</Text>
+              <ActivityIndicator size={30} color={'rgb(86, 213, 250)'} />
+              <Text style={styles.scanningText}>Scanning...</Text>
             </View>
             :
             <Button
+              color={'rgb(86, 213, 250)'}
               title="Scan devices"
               onPress={() => {
                 bluetoothEnabled ?
