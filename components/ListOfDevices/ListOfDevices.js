@@ -8,11 +8,11 @@ const ListOfDevices = ({ navigation }) => {
 
   const [devices, setDevices] = useState([]);
   const [scanning, setScanning] = useState(false);
+  const [bluetoothEnabled, setBluetoothEnabled] = useState(false);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    BLE_modules.startModule();
-    BLE_modules.scanDevices(setDevices, devices, setScanning)
+    BLE_modules.enableBluetooth(setDevices, setScanning, setBluetoothEnabled);
   }, []);
 
   const filteredDevices = () => {
@@ -36,7 +36,7 @@ const ListOfDevices = ({ navigation }) => {
       <SafeAreaView style={styles.safeAreaView}>
         <ScrollView>
           <TextInput
-            placeholder={'Tap to search by name or id...'}
+            placeholder={'Tap to search by name or MAC...'}
             value={search}
             onChange={(e) => setSearch(e.nativeEvent.text)}
           />
@@ -63,7 +63,11 @@ const ListOfDevices = ({ navigation }) => {
             :
             <Button
               title="Scan devices"
-              onPress={() => { BLE_modules.scanDevices(setDevices, devices, setScanning) }}
+              onPress={() => {
+                bluetoothEnabled ?
+                  BLE_modules.scanDevices(setDevices, setScanning)
+                  : BLE_modules.enableBluetooth(setDevices, setScanning, setBluetoothEnabled);
+              }}
             />}
         </ScrollView>
       </SafeAreaView>

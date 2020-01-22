@@ -10,7 +10,7 @@ const ListItem = (props) => {
         style={styles.listItemContainer}>
         <View style={styles.listItemTextContainer}>
           <Text>Name: {deviceName}</Text>
-          <Text>ID: {deviceID}</Text>
+          <Text>MAC: {deviceID}</Text>
           <Text>RSSI: {deviceRSSI}</Text>
         </View>
         <View style={styles.listItemButtonContainer}>

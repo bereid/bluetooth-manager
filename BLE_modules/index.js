@@ -1,13 +1,28 @@
 import BleManager from 'react-native-ble-manager';
 import { Alert, PermissionsAndroid } from 'react-native';
 
-export function startModule() {
-  BleManager.start({ showAlert: false }).then(() => {
-    console.log('Module initialized');
-  });
+export function enableBluetooth(setDevices, setScanning, setBluetoothEnabled) {
+  BleManager.enableBluetooth()
+    .then(() => {
+      setBluetoothEnabled(true)
+      startModule(setDevices, setScanning);
+    })
+    .catch((error) => {
+      Alert.alert('You have to enable Bluetooth to use the application!')
+    });
 }
 
-export async function scanDevices(setDevices, devices, setScanning) {
+export function startModule(setDevices, setScanning) {
+  BleManager.start({ showAlert: false })
+    .then(() => {
+      scanDevices(setDevices, setScanning);
+    })
+    .catch((error) => {
+      Alert.alert('Module failed to start', 'Please enable bluetooth and restart the app!')
+    });
+}
+
+export async function scanDevices(setDevices, setScanning) {
   setScanning(true)
   try {
     const granted = await PermissionsAndroid.request(
