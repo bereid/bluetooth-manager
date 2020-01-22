@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Text } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, Button } from 'react-native';
 import styles from '../../styles';
 
 const DeviceDetails = (props) => {
@@ -28,6 +28,10 @@ const DeviceDetails = (props) => {
               </View>
             ))}
           </View>
+          <Button
+            color={'rgb(86, 213, 250)'}
+            title="Disconnect from device"
+          />
         </ScrollView>
       </SafeAreaView>
     </>

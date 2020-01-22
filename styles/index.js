@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     borderWidth: 1,
-    borderColor: 'grey'
+    borderColor: 'grey',
+    marginBottom: 20,
   },
   detailsBoxRowOdd: {
     backgroundColor: 'white',

@@ -55,3 +55,18 @@ export async function scanDevices(setDevices, setScanning) {
     Alert.alert('To scanning, you have to give access to your location!')
   }
 };
+
+export function connectToDevice(id, navigate, deviceInfo, setConnection) {
+  setConnection(true)
+  BleManager.connect(id)
+  .then((peripheralInfo) => {
+    console.log('Connected');
+    console.log(peripheralInfo);
+    setConnection(false)
+    navigate('Details', deviceInfo)
+  })
+  .catch((error) => {
+    setConnection(false)
+    Alert.alert('Unable to connecting to device', 'Please try again');
+  });
+}

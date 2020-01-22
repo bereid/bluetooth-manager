@@ -22,8 +22,6 @@ const ListOfDevices = ({ navigation }) => {
     );
   }
 
-  console.log(devices)
-
   return (
     <>
       <SafeAreaView style={styles.safeAreaView}>
