@@ -6,9 +6,15 @@ import ListOfDevices from './screens/ListOfDevices';
 const App = createStackNavigator({
   ListOfDevices: {
     screen: ListOfDevices,
+    navigationOptions: () => ({
+      title: 'Available Bluetooth devices',
+    }),
   },
   Details: {
-    screen: DeviceDetails
+    screen: DeviceDetails,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.deviceName !== 'N/A' ? navigation.state.params.deviceName : 'Unknown device'}'s details`,
+    }),
   }
 });
 

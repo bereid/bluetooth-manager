@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     flex: 0.3,
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
   listContainer: {
     marginBottom: 20,

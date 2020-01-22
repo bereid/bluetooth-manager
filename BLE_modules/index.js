@@ -60,7 +60,7 @@ export function connectToDevice(id, navigate, deviceInfo, setConnection) {
   setConnection(true)
   BleManager.connect(id)
   .then(() => {
-    console.log('Connected');
+    console.log('Connected to ' + id);
     setConnection(false)
     navigate('Details', deviceInfo)
   })
@@ -74,7 +74,7 @@ export function disConnectFromDevice(id, navigateBack) {
   BleManager.disconnect(id)
   .then(() => {
     navigateBack()
-    console.log('Disconnected');
+    console.log('Disconnected from ' + id);
   })
   .catch((error) => {
     Alert.alert('Unable to disconnect from device', 'Please try again');
