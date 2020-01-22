@@ -1,7 +1,7 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import DeviceDetails from './components/DeviceDetails';
-import ListOfDevices from './components/ListOfDevices';
+import DeviceDetails from './screens/DeviceDetails';
+import ListOfDevices from './screens/ListOfDevices';
 
 const App = createStackNavigator({
   ListOfDevices: {

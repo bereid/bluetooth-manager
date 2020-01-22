@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, View, Text, Button, ActivityIndicator, TextInput } from 'react-native';
 import * as BLE_modules from '../../BLE_modules';
-import ListItem from '../ListItem';
+import ListItem from '../../components/ListItem';
 import styles from '../../styles';
 
 const ListOfDevices = ({ navigation }) => {
