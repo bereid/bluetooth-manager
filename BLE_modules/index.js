@@ -59,14 +59,24 @@ export async function scanDevices(setDevices, setScanning) {
 export function connectToDevice(id, navigate, deviceInfo, setConnection) {
   setConnection(true)
   BleManager.connect(id)
-  .then((peripheralInfo) => {
+  .then(() => {
     console.log('Connected');
-    console.log(peripheralInfo);
     setConnection(false)
     navigate('Details', deviceInfo)
   })
   .catch((error) => {
     setConnection(false)
-    Alert.alert('Unable to connecting to device', 'Please try again');
+    Alert.alert('Unable to connect to device', 'Please try again');
+  });
+};
+
+export function disConnectFromDevice(id, navigateBack) {
+  BleManager.disconnect(id)
+  .then(() => {
+    navigateBack()
+    console.log('Disconnected');
+  })
+  .catch((error) => {
+    Alert.alert('Unable to disconnect from device', 'Please try again');
   });
 }
